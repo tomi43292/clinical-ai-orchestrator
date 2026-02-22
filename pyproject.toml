@@ -1,0 +1,34 @@
+[project]
+name = "clinical-ai-orchestrator"
+version = "0.1.0"
+description = "AI-powered Clinical Triage Engine — Integrates Computer Vision and LLM reasoning for intelligent medical image analysis and patient prioritization."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Tomás Daniel González", email = "tomi150301@gmail.com" },
+]
+
+[project.urls]
+Repository = "https://github.com/tomi43292/clinical-ai-orchestrator"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "N", "W", "UP"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+warn_return_any = true
+warn_unused_configs = true
