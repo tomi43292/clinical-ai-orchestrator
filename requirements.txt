@@ -8,21 +8,23 @@ python-multipart==0.0.20
 # ── Database — PostgreSQL (SQLAlchemy + Alembic) ────────────────
 sqlalchemy[asyncio]==2.0.36
 asyncpg==0.30.0
+psycopg2-binary==2.9.10
 alembic==1.14.1
 greenlet==3.1.1
 
 # ── Database — Cosmos DB / MongoDB ──────────────────────────────
 motor==3.6.0
-pymongo==4.10.1
 
 # ── Azure AI Services ──────────────────────────────────────────
 azure-ai-vision-imageanalysis==1.0.0b3
 azure-cognitiveservices-vision-computervision==0.9.0
 azure-search-documents==11.6.0b8
-azure-ai-ml==1.23.1
 azure-identity==1.19.0
 azure-keyvault-secrets==4.9.0
 openai==1.59.3
+
+# ── Azure ML (optional — install separately if needed) ─────────
+# azure-ai-ml==1.23.1  # Requires C++ build tools on Windows
 
 # ── LangChain & LLM Orchestration ──────────────────────────────
 langchain==0.3.14
@@ -31,8 +33,6 @@ langchain-community==0.3.14
 langchain-core==0.3.30
 
 # ── Document Processing ────────────────────────────────────────
-PyMuPDF==1.25.3
-python-docx==1.1.2
 Pillow==11.1.0
 
 # ── Observability & Utilities ──────────────────────────────────
@@ -44,5 +44,4 @@ python-dotenv==1.0.1
 pytest==8.3.4
 pytest-asyncio==0.25.2
 pytest-cov==6.0.0
-httpx==0.28.1
 factory-boy==3.3.1

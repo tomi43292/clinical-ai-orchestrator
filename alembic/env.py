@@ -2,6 +2,12 @@
 Alembic environment configuration for async PostgreSQL migrations.
 """
 
+import sys
+from pathlib import Path
+
+# Ensure the project root is on sys.path so 'app' is importable
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from logging.config import fileConfig
 
 from sqlalchemy import pool
@@ -24,14 +30,15 @@ if config.config_file_name is not None:
 # Target metadata for autogenerate
 target_metadata = Base.metadata
 
-# Override sqlalchemy.url from environment
+# Override sqlalchemy.url from environment — keep +asyncpg for online mode
 settings = get_settings()
-config.set_main_option("sqlalchemy.url", settings.database_url.replace("+asyncpg", ""))
+config.set_main_option("sqlalchemy.url", settings.database_url)
 
 
 def run_migrations_offline() -> None:
     """Run migrations in 'offline' mode — generates SQL without a DB connection."""
-    url = config.get_main_option("sqlalchemy.url")
+    # Offline mode uses psycopg2 (sync driver)
+    url = config.get_main_option("sqlalchemy.url").replace("+asyncpg", "")
     context.configure(
         url=url,
         target_metadata=target_metadata,
@@ -74,3 +81,4 @@ if context.is_offline_mode():
     run_migrations_offline()
 else:
     run_migrations_online()
+
